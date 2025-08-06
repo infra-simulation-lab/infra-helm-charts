@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "payment-service-chart.fullname" . }}
+  labels:
+    app: {{ include "payment-service-chart.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "payment-service-chart.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "payment-service-chart.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Never
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
