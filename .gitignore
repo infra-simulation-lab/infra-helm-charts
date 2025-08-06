@@ -1,0 +1,8 @@
+*.swp
+*.bak
+*.tmp
+*.log
+.DS_Store
+Chart.lock
+charts/
+values.override.yaml
